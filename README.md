@@ -4,7 +4,7 @@
   <a href="https://www.linkedin.com/in/danae-lescano-salvatierra" target="_blank">
     <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="linkedin logo"/>
   </a>
-  <a href="https://lescano713.github.io/Card-Feature-Section/" target="_blank">
+  <a href="https://lescano713.github.io/Testimonial-Grid-Section/" target="_blank">
     <img src="https://img.shields.io/static/v1?message=Demo&label=&color=6A0DAD&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="demo badge"/>
   </a>
   <a href="https://www.frontendmentor.io/profile/Lescano713" target="_blank">
@@ -46,50 +46,65 @@
 
 ### What I learned
 
-<p>I learned about the use of grid areas, using span to organize the elements according to the design</p>
+<p>I learned about the different properties of <code>background-image</code></p>
 
 
 ```css
-    .supervisor{
-      grid-column: span 1/2;
-    }
-    .supervisor, .calculator{
-      align-self: flex-start;
-      grid-row:span 2/4;
-    }
-    .calculator{
-      grid-column: span 1/4;
-    }
+  .daniel-clifford{
+    grid-column: auto / span 2;
+    background-image: url('./images/bg-pattern-quotation.svg');
+    background-repeat: no-repeat;
+    background-position: 90% 10%;
+  }
 ```
-<p>Also I implemented media queries and grid to make the cards responsive on different devices.</p>
+<p>I also implemented media queries and grid columns and rows to make the cards responsive on different devices.</p>
+
 
 ```css
-    @media (max-width: 850px) {
-      main{
-          grid-template-columns: repeat(auto-fit ,minmax(13em,1fr)) ;
-          grid-gap: 20px 50px;
-          grid-template-rows: auto;
-          width: 90dvw;
-          .feature-container{
-              grid-column: unset;
-              grid-row: unset;
-              max-height: 10em;
-          }
+    @media (max-width: 1000px) {
+        main{
+            grid-template-columns: repeat(auto-fit ,minmax(14em,1fr));
+            padding: 1.3em 1em ;
+        }
+    }
+    
+    @media (max-width: 550px){
+      .jeanette-harmon, .jonathan-walters, .kira-whittle{
+        grid-column: span 2;
       }
     }
+
 ```
-<p>To add more cards without writing the elements directly in the html I facilitated the entry of data using objects and arrays, dividing it by name, color, paragraph and image</p>
+<p>I created a Json file to facilitate data entry, dividing the data by studentName, rol, studentImage, resume, testimonial, color, and colorFont. I used colorFont to apply a font color according to each student, which helped me to reduce the amount of CSS needed</p>
+
+```json
+ {
+    "studentName" : "Jeanette Harmon",
+    "rol": "Verified Graduate",
+    "studentImage" : "./images/image-jeanette.jpg",
+    "resume":"An overall wonderful and rewarding experience",
+    "testimonial": "Thank you for the wonderful experience! I now have a job I really enjoy, and make a good living while doing something I love." ,
+    "color": "hsl(0, 0%, 100%)",
+    "colorFont" : "black"
+ },
+```
+```js
+        let section = document.createElement("section");
+        section.style.backgroundColor = element.color;
+        section.style.color = element.colorFont;
+        main.appendChild(section);
+```
+
+<p>To bring the data from the JSON file, I used the Fetch API and created a function that retrieves the data and creates the respective elements</p>
 
 ```js
- const features =[{
-        name: "Supervisor",
-        color: "hsl(180, 62%, 55%)",
-        paragraph: "Monitors activity to identify project roadblocks",
-        img: './images/icon-supervisor.svg',
-    },]
-
+  function getElements(callback){
+      fetch('data.json')
+          .then(response => response.json())
+          .then(data =>callback(data.testimonials))
+  }
 ```
-<p>Then, I created a function that adds the elements in the DOM from the entered data.</p>
+<p>Then, I created a function that adds the elements to the DOM from the retrieved data.</p>
 
 ```js
  function createCards (){
@@ -99,7 +114,6 @@
       })
     }
 ```
-
 
 
 
