@@ -23,24 +23,25 @@ getElements(data => {
         let h1Name = document.createElement("h1");
         h1Name.textContent = element.studentName;
         let pRol = document.createElement("p");
+        pRol.classList.add("rol");
         pRol.textContent = element.rol;
         divInfo.appendChild(imageStudent);
         divText.appendChild(h1Name);
         divText.appendChild(pRol);
         
         let pResume = document.createElement("p");
-        let bResume = document.createElement("b");
-        bResume.textContent = element.resume;
-        pResume.appendChild(bResume)
+        pResume.textContent = element.resume;
+        pResume.classList.add("resume");
 
         let pTestimonial = document.createElement("p");
         let qTestimonial = document.createElement("q");
         qTestimonial.textContent = element.testimonial;
         pTestimonial.appendChild(qTestimonial);
+        pTestimonial.classList.add("testimonial");
         
         section.appendChild(divInfo)
-        section.appendChild(bResume);
-        section.appendChild(qTestimonial);
+        section.appendChild(pResume);
+        section.appendChild(pTestimonial);
 
         section.style.backgroundColor = element.color;
         section.style.color = element.colorFont;

@@ -13,7 +13,7 @@
 }
 
 
-.student-info, .testimonial-container{
+.student-info, .testimonial-container, body{
     display: flex;
 }
 
@@ -27,37 +27,44 @@ body{
 
 main{
     display: grid;
-    /* grid-template-columns: repeat(fill-content, minmax(10em, 1fr)); */
-    /* width: 80%; */
-    /* align-items: center; */
     grid-template-columns: repeat(4, 1fr);
-    /* grid-auto-rows: minmax(12em, auto); */
     grid-auto-flow: dense;
-    grid-gap: 20px
+    grid-gap: 20px;
+    width: 90%;
 }
 
 
 .testimonial-container{
     flex-direction: column;
-    justify-content: space-around;
-    padding: 1.3rem;
+    justify-content: space-between;
+    padding: 1.4rem;
     border-radius: 8px;
     .student-info{
         flex-direction: row-reverse;
         justify-content: start;
         align-items: center;
+        margin-bottom: 5px;
         .text{
             padding-left: 10px;
         }
     }
     h1{
         font-size: 18px;
+        font-weight: 600;
     }
     p{
         font-size: 14px;
     }
+    .resume{
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .testimonial{
+        margin: 10px 0;
+    }
     img{
-        border-radius: 50% ;
+        border-radius: 50%;
+        width: 40px;
     }
 }
 .daniel-clifford{
@@ -73,3 +80,14 @@ main{
     grid-column: auto /span 2;
 }
 
+@media (max-width: 1000px) {
+    main{
+        grid-auto-rows: auto;
+        grid-template-columns: repeat(auto-fit ,minmax(13em,1fr));
+        section{
+            grid-column: unset ;
+            grid-row: unset;
+            
+        }
+    }
+}
