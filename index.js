@@ -20,6 +20,7 @@ getElements(data => {
 
         let imageStudent = document.createElement("img");
         imageStudent.src = element.studentImage;
+        imageStudent.alt = `${element.studentName}-image`;
         let h1Name = document.createElement("h1");
         h1Name.textContent = element.studentName;
         let pRol = document.createElement("p");
